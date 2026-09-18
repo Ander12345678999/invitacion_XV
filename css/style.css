@@ -1,0 +1,244 @@
+/* =========================================
+   INVITACIÓN XV - ANDREA CUENTAS
+   Estilos iniciales
+   ========================================= */
+
+
+/* ---------- CONFIGURACIÓN GENERAL ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #fffaf0;
+    color: #3a2a20;
+}
+
+
+/* ---------- PANTALLA DE BIENVENIDA ---------- */
+
+.welcome-section {
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fffdf8 0%,
+            #fff8e9 55%,
+            #f3dfad 100%
+        );
+
+    padding: 25px;
+}
+
+/* Marco dorado */
+.welcome-section::before {
+    content: "";
+
+    position: absolute;
+
+    top: 18px;
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+
+    border: 1px solid rgba(180, 140, 50, 0.45);
+
+    pointer-events: none;
+}
+
+
+/* ---------- CONTENIDO ---------- */
+
+.welcome-content {
+    width: min(90%, 600px);
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 18px;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ---------- TEXTO PRINCIPAL ---------- */
+
+.invitation-text {
+    font-size: 1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    color: #8a6a32;
+}
+
+
+#guestName {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+
+    font-weight: 500;
+
+    letter-spacing: 2px;
+
+    color: #b28a32;
+
+    text-shadow:
+        0 1px 1px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- INFORMACIÓN DE ANDREA ---------- */
+
+.celebrant-text {
+    font-size: 1.1rem;
+
+    letter-spacing: 5px;
+    text-transform: uppercase;
+
+    color: #6e5040;
+}
+
+
+.welcome-content h2 {
+    font-size: clamp(2rem, 7vw, 3.5rem);
+
+    font-weight: 400;
+
+    color: #8f1d2c;
+
+    letter-spacing: 3px;
+}
+
+
+/* ---------- BOTÓN ---------- */
+
+#openInvitation {
+    margin-top: 25px;
+
+    padding: 14px 34px;
+
+    border: 1px solid #c7a24b;
+    border-radius: 50px;
+
+    background: transparent;
+
+    color: #8a6a32;
+
+    font-family: inherit;
+    font-size: 1rem;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.4s ease,
+        color 0.4s ease,
+        box-shadow 0.4s ease,
+        transform 0.4s ease;
+}
+
+
+#openInvitation:hover {
+    background: #c7a24b;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 8px 25px rgba(180, 140, 50, 0.25);
+
+    transform: translateY(-2px);
+}
+
+
+/* ---------- ADAPTACIÓN PARA CELULAR ---------- */
+
+@media (max-width: 600px) {
+
+    .welcome-content {
+        gap: 14px;
+    }
+
+    .invitation-text {
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+    }
+
+    #guestName {
+        letter-spacing: 1px;
+    }
+
+    .celebrant-text {
+        font-size: 0.9rem;
+        letter-spacing: 3px;
+    }
+
+    .welcome-content h2 {
+        letter-spacing: 2px;
+    }
+
+    #openInvitation {
+        padding: 13px 28px;
+        font-size: 0.9rem;
+    }
+}
+/* ---------- DECORACIÓN FLORAL ---------- */
+
+.floral-corner {
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+/* Esquina superior derecha */
+
+.floral-top {
+    top: 0;
+    right: 0;
+
+    border-top: 2px solid rgba(180, 140, 50, 0.45);
+    border-right: 2px solid rgba(180, 140, 50, 0.45);
+
+    border-top-right-radius: 20px;
+}
+
+/* Esquina inferior izquierda */
+
+.floral-bottom {
+    bottom: 0;
+    left: 0;
+
+    border-bottom: 2px solid rgba(180, 140, 50, 0.45);
+    border-left: 2px solid rgba(180, 140, 50, 0.45);
+
+    border-bottom-left-radius: 20px;
+}
+@media (max-width: 600px) {
+
+    .floral-corner {
+        width: 125px;
+        height: 125px;
+    }
+
+}
