@@ -33,13 +33,10 @@ body {
     position: relative;
     overflow: hidden;
 
-    background:
-        radial-gradient(
-            circle at center,
-            #fffdf8 0%,
-            #fff8e9 55%,
-            #f3dfad 100%
-        );
+    background-image: url("../assets/images/marco-floral.jpg");
+background-size: 100% 100%;
+background-position: center;
+background-repeat: no-repeat;
 
     padding: 25px;
 }
