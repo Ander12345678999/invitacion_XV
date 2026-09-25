@@ -1169,3 +1169,732 @@ html {
         transform: translateX(-50%);
     }
 }
+/* =========================================
+   TERCERA SECCIÓN - CUENTA REGRESIVA
+========================================= */
+
+.countdown-section {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 90px 25px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fffef9 0%,
+            #fff8e8 55%,
+            #efd9a3 100%
+        );
+}
+
+/* Decoración floral de fondo */
+
+.countdown-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        url("../assets/images/marco-floral.jpg");
+
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    mix-blend-mode: multiply;
+    opacity: 0.10;
+
+    pointer-events: none;
+}
+
+/* Círculo decorativo central */
+
+.countdown-section::after {
+    content: "";
+
+    position: absolute;
+
+    width: 430px;
+    height: 430px;
+
+    border: 1px solid rgba(197, 154, 66, 0.12);
+    border-radius: 50%;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+}
+
+/* Borde exterior */
+
+.countdown-border {
+    position: absolute;
+    inset: 18px;
+
+    border: 1px solid rgba(197, 154, 66, 0.42);
+
+    pointer-events: none;
+    z-index: 1;
+}
+
+.countdown-border::before,
+.countdown-border::after {
+    content: "";
+
+    position: absolute;
+
+    width: 85px;
+    height: 85px;
+
+    border: 1px solid rgba(197, 154, 66, 0.4);
+}
+
+.countdown-border::before {
+    top: -1px;
+    right: -1px;
+
+    border-left: none;
+    border-bottom: none;
+}
+
+.countdown-border::after {
+    bottom: -1px;
+    left: -1px;
+
+    border-right: none;
+    border-top: none;
+}
+
+/* Contenido */
+
+.countdown-content {
+    width: min(92%, 650px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    position: relative;
+    z-index: 2;
+}
+
+/* Texto pequeño */
+
+.countdown-small {
+    color: #8a6a32;
+
+    font-size: 0.95rem;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 14px;
+}
+
+/* Ornamento */
+
+.countdown-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    color: #c59a42;
+
+    margin-bottom: 22px;
+}
+
+.countdown-ornament span:not(:nth-child(2)) {
+    width: 70px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            #c59a42
+        );
+}
+
+.countdown-ornament span:last-child {
+    background:
+        linear-gradient(
+            to left,
+            transparent,
+            #c59a42
+        );
+}
+
+.countdown-ornament span:nth-child(2) {
+    font-size: 1.15rem;
+}
+
+/* Título */
+
+.countdown-content h2 {
+    color: #a51f2a;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            3.5rem,
+            13vw,
+            6rem
+        );
+
+    font-weight: 600;
+
+    line-height: 0.85;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 28px;
+
+    text-shadow:
+        0 2px 2px rgba(120, 70, 20, 0.12);
+}
+
+/* Mensaje */
+
+.countdown-message {
+    max-width: 500px;
+
+    color: #5d493d;
+
+    font-size: 1.05rem;
+
+    line-height: 1.8;
+
+    margin-bottom: 38px;
+}
+
+/* Contenedor del contador */
+
+.countdown-timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    width: 100%;
+}
+
+/* Cada bloque comienza oculto */
+.time-box {
+    width: 105px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 18px 8px 14px;
+
+    background:
+        rgba(255, 253, 247, 0.72);
+
+    border: 1px solid rgba(197, 154, 66, 0.55);
+
+    box-shadow:
+        0 8px 20px rgba(120, 80, 20, 0.08);
+
+    backdrop-filter: blur(3px);
+
+    opacity: 0;
+    transform:
+        translateY(25px)
+        scale(0.92);
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* Entrada escalonada */
+.countdown-section.active .time-box:nth-child(1) {
+    animation:
+        countdownBoxAppear
+        1.2s
+        ease
+        forwards;
+
+    animation-delay: 3.2s;
+}
+
+.countdown-section.active .time-box:nth-child(3) {
+    animation:
+        countdownBoxAppear
+        1.2s
+        ease
+        forwards;
+
+    animation-delay: 4.2s;
+}
+
+.countdown-section.active .time-box:nth-child(5) {
+    animation:
+        countdownBoxAppear
+        1.2s
+        ease
+        forwards;
+
+    animation-delay: 5.2s;
+}
+
+.countdown-section.active .time-box:nth-child(7) {
+    animation:
+        countdownBoxAppear
+        1.2s
+        ease
+        forwards;
+
+    animation-delay: 6.2s;
+}
+
+/* Pequeño destello dentro de cada tarjeta */
+.time-box::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.65),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+}
+
+.countdown-section.active .time-box:nth-child(1)::after {
+    animation: boxShine 1s ease 4s;
+}
+
+.countdown-section.active .time-box:nth-child(3)::after {
+    animation: boxShine 1s ease 5s;
+}
+
+.countdown-section.active .time-box:nth-child(5)::after {
+    animation: boxShine 1s ease 6s;
+}
+
+.countdown-section.active .time-box:nth-child(7)::after {
+    animation: boxShine 1s ease 7s;
+}
+
+/* Cada bloque */
+
+.time-box {
+    width: 105px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 18px 8px 14px;
+
+    background:
+        rgba(255, 253, 247, 0.72);
+
+    border: 1px solid rgba(197, 154, 66, 0.55);
+
+    box-shadow:
+        0 8px 20px rgba(120, 80, 20, 0.08);
+
+    backdrop-filter: blur(3px);
+}
+
+.time-box span {
+    color: #a51f2a;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: 2.7rem;
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    min-width: 60px;
+}
+
+.time-box small {
+    margin-top: 8px;
+
+    color: #8a6a32;
+
+    font-size: 0.72rem;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+/* Separadores */
+
+.time-separator {
+    color: #c59a42;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: 2rem;
+
+    margin-top: -18px;
+}
+
+/* Fecha */
+
+.countdown-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 30px;
+
+    color: #8a6a32;
+
+    font-size: 0.85rem;
+
+    letter-spacing: 2px;
+}
+
+.countdown-date span {
+    color: #c59a42;
+    font-size: 0.75rem;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .countdown-section {
+        padding:
+            85px
+            18px
+            100px;
+    }
+
+    .countdown-border {
+        inset: 12px;
+    }
+
+    .countdown-border::before,
+    .countdown-border::after {
+        width: 60px;
+        height: 60px;
+    }
+
+    .countdown-small {
+        font-size: 0.82rem;
+        letter-spacing: 2px;
+    }
+
+    .countdown-ornament span:not(:nth-child(2)) {
+        width: 45px;
+    }
+
+    .countdown-content h2 {
+        font-size:
+            clamp(
+                3.3rem,
+                15vw,
+                5rem
+            );
+    }
+
+    .countdown-message {
+        font-size: 0.98rem;
+        line-height: 1.7;
+        margin-bottom: 30px;
+    }
+
+    .countdown-timer {
+        gap: 5px;
+    }
+
+    .time-box {
+        width: 68px;
+        padding: 14px 4px 11px;
+    }
+
+    .time-box span {
+        font-size: 2rem;
+    }
+
+    .time-box small {
+        font-size: 0.55rem;
+        letter-spacing: 0.8px;
+    }
+
+    .time-separator {
+        font-size: 1.4rem;
+        margin-top: -15px;
+    }
+
+    .countdown-date {
+        font-size: 0.72rem;
+        letter-spacing: 1.2px;
+        gap: 8px;
+    }
+}
+
+
+/* =========================================
+   REDUCIR MOVIMIENTO
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .countdown-section *,
+    .countdown-section *::before,
+    .countdown-section *::after {
+        scroll-behavior: auto;
+    }
+}
+/* =========================================
+   ANIMACIONES DEL CONTADOR
+========================================= */
+
+@keyframes countdownBoxAppear {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.92);
+    }
+
+    60% {
+        opacity: 1;
+
+        transform:
+            translateY(-4px)
+            scale(1.02);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+@keyframes boxShine {
+
+    0% {
+        left: -120%;
+    }
+
+    100% {
+        left: 150%;
+    }
+}
+/* =========================================
+   PARTÍCULAS DORADAS
+========================================= */
+
+.countdown-sparkles {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    overflow: hidden;
+}
+
+.countdown-sparkles span {
+    position: absolute;
+
+    color: #c59a42;
+
+    opacity: 0;
+
+    text-shadow:
+        0 0 6px rgba(197, 154, 66, 0.35);
+}
+
+/* Posiciones */
+
+.countdown-sparkles span:nth-child(1) {
+    left: 14%;
+    top: 72%;
+    font-size: 1rem;
+}
+
+.countdown-sparkles span:nth-child(2) {
+    left: 25%;
+    top: 35%;
+    font-size: 0.7rem;
+}
+
+.countdown-sparkles span:nth-child(3) {
+    left: 38%;
+    top: 78%;
+    font-size: 0.9rem;
+}
+
+.countdown-sparkles span:nth-child(4) {
+    left: 48%;
+    top: 22%;
+    font-size: 0.65rem;
+}
+
+.countdown-sparkles span:nth-child(5) {
+    left: 63%;
+    top: 70%;
+    font-size: 1rem;
+}
+
+.countdown-sparkles span:nth-child(6) {
+    left: 74%;
+    top: 30%;
+    font-size: 0.7rem;
+}
+
+.countdown-sparkles span:nth-child(7) {
+    left: 84%;
+    top: 64%;
+    font-size: 0.9rem;
+}
+
+.countdown-sparkles span:nth-child(8) {
+    left: 91%;
+    top: 42%;
+    font-size: 0.65rem;
+}
+
+/* Las estrellas comienzan después de entrar a la sección */
+
+.countdown-section.active .countdown-sparkles span {
+    animation:
+        sparkleFloat
+        4s
+        ease-in-out
+        infinite;
+}
+
+.countdown-section.active .countdown-sparkles span:nth-child(1) {
+    animation-delay: 1s;
+}
+
+.countdown-section.active .countdown-sparkles span:nth-child(2) {
+    animation-delay: 1.6s;
+}
+
+.countdown-section.active .countdown-sparkles span:nth-child(3) {
+    animation-delay: 2.2s;
+}
+
+.countdown-section.active .countdown-sparkles span:nth-child(4) {
+    animation-delay: 2.8s;
+}
+
+.countdown-section.active .countdown-sparkles span:nth-child(5) {
+    animation-delay: 1.3s;
+}
+
+.countdown-section.active .countdown-sparkles span:nth-child(6) {
+    animation-delay: 2s;
+}
+
+.countdown-section.active .countdown-sparkles span:nth-child(7) {
+    animation-delay: 3s;
+}
+
+.countdown-section.active .countdown-sparkles span:nth-child(8) {
+    animation-delay: 3.5s;
+}
+
+@keyframes sparkleFloat {
+
+    0% {
+        opacity: 0;
+        transform:
+            translateY(20px)
+            scale(0.5)
+            rotate(0deg);
+    }
+
+    25% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+
+        transform:
+            translateY(-10px)
+            scale(1)
+            rotate(45deg);
+    }
+
+    75% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-35px)
+            scale(0.5)
+            rotate(90deg);
+    }
+}
+/* =========================================
+   INVITACIÓN BLOQUEADA AL INICIO
+========================================= */
+
+body.invitation-locked {
+    overflow: hidden;
+}
+
+body.invitation-locked main > section:not(#welcome) {
+    display: none;
+}
+
+
+/* Cuando se abre la invitación */
+
+body.invitation-open {
+    overflow-x: hidden;
+}
