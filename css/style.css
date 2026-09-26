@@ -1898,3 +1898,653 @@ body.invitation-locked main > section:not(#welcome) {
 body.invitation-open {
     overflow-x: hidden;
 }
+/* =========================================
+   CRONOGRAMA DEL EVENTO
+========================================= */
+
+.schedule-section {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 90px 25px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fffef9 0%,
+            #fff8e8 55%,
+            #efd9a3 100%
+        );
+}
+
+
+/* Marco exterior */
+
+.schedule-border {
+    position: absolute;
+    inset: 18px;
+
+    border: 1px solid rgba(197, 154, 66, 0.42);
+
+    pointer-events: none;
+    z-index: 1;
+}
+
+.schedule-border::before,
+.schedule-border::after {
+    content: "";
+
+    position: absolute;
+
+    width: 85px;
+    height: 85px;
+
+    border: 1px solid rgba(197, 154, 66, 0.4);
+}
+
+.schedule-border::before {
+    top: -1px;
+    left: -1px;
+
+    border-right: none;
+    border-bottom: none;
+}
+
+.schedule-border::after {
+    right: -1px;
+    bottom: -1px;
+
+    border-left: none;
+    border-top: none;
+}
+
+
+/* Decoraciones laterales */
+
+.schedule-decoration {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 22px;
+
+    color: #c59a42;
+
+    opacity: 0.45;
+
+    z-index: 1;
+}
+
+.schedule-decoration-left {
+    left: 7%;
+    top: 35%;
+}
+
+.schedule-decoration-right {
+    right: 7%;
+    bottom: 32%;
+}
+
+.schedule-decoration span {
+    font-size: 0.8rem;
+
+    text-shadow:
+        0 1px 3px rgba(150, 100, 20, 0.2);
+}
+
+.schedule-decoration span:nth-child(2) {
+    font-size: 1.5rem;
+}
+
+
+/* Contenido */
+
+.schedule-content {
+    width: min(92%, 620px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* Encabezado */
+
+.schedule-heading {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    margin-bottom: 55px;
+}
+
+.schedule-heading-ornament {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    color: #c59a42;
+
+    margin-bottom: 18px;
+}
+
+.schedule-heading-ornament span:not(:nth-child(2)) {
+    width: 65px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            #c59a42
+        );
+}
+
+.schedule-heading-ornament span:last-child {
+    background:
+        linear-gradient(
+            to left,
+            transparent,
+            #c59a42
+        );
+}
+
+.schedule-heading-ornament span:nth-child(2) {
+    font-size: 1.1rem;
+}
+
+.schedule-heading h2 {
+    margin: 0;
+
+    color: #a51f2a;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: clamp(
+        2.8rem,
+        10vw,
+        4.8rem
+    );
+
+    font-weight: 600;
+
+    line-height: 0.9;
+
+    letter-spacing: -0.5px;
+
+    text-shadow:
+        0 2px 2px rgba(120, 70, 20, 0.12);
+}
+
+.schedule-heading-line {
+    width: 90px;
+    height: 1px;
+
+    margin-top: 22px;
+
+    background: #c59a42;
+}
+
+
+/* =========================================
+   LÍNEA DE TIEMPO
+========================================= */
+
+.event-timeline {
+    width: min(100%, 520px);
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+}
+
+
+/* Cada momento */
+
+.timeline-item {
+    display: grid;
+
+    grid-template-columns: 90px 1fr;
+
+    column-gap: 28px;
+
+    position: relative;
+
+    min-height: 190px;
+}
+
+
+/* Línea vertical */
+
+.timeline-line {
+    position: absolute;
+
+    left: 44px;
+
+    top: 86px;
+    bottom: -5px;
+
+    width: 1px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(197, 154, 66, 0.8),
+            rgba(197, 154, 66, 0.25)
+        );
+}
+
+
+/* No queremos línea después del último evento */
+
+.timeline-item:last-child .timeline-line {
+    display: none;
+}
+
+
+/* Círculo / icono */
+
+.timeline-icon {
+    width: 78px;
+    height: 78px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #fffdf8 0%,
+            #f8edcf 100%
+        );
+
+    border: 1px solid #c59a42;
+
+    box-shadow:
+        0 0 0 6px rgba(197, 154, 66, 0.08),
+        0 8px 20px rgba(120, 80, 20, 0.10);
+
+    position: relative;
+
+    z-index: 2;
+
+    color: #a51f2a;
+}
+
+
+.timeline-icon::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 6px;
+
+    border: 1px solid rgba(197, 154, 66, 0.45);
+
+    border-radius: 50%;
+}
+
+
+.timeline-icon span {
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 1.8rem;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* Información */
+
+.timeline-info {
+    padding-top: 4px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+}
+
+
+/* Hora */
+
+.timeline-time {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 20px;
+
+    border: 1px solid rgba(197, 154, 66, 0.55);
+
+    color: #8a6a32;
+
+    background: rgba(255, 253, 247, 0.65);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: 1.25rem;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 4px 12px rgba(120, 80, 20, 0.06);
+}
+
+
+/* Título del evento */
+
+.timeline-info h3 {
+    margin: 14px 0 0;
+
+    color: #5d493d;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: clamp(
+        1.8rem,
+        6vw,
+        2.5rem
+    );
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    text-align: left;
+}
+
+
+/* Adorno inferior */
+
+.schedule-bottom-ornament {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 30px;
+
+    color: #c59a42;
+}
+
+.schedule-bottom-ornament span:not(:nth-child(2)) {
+    width: 55px;
+    height: 1px;
+
+    background: #c59a42;
+}
+
+.schedule-bottom-ornament span:nth-child(2) {
+    font-size: 0.75rem;
+}
+
+
+/* =========================================
+   ANIMACIONES
+========================================= */
+
+.schedule-heading,
+.timeline-item,
+.schedule-bottom-ornament {
+    opacity: 0;
+}
+
+
+/* Título */
+
+.schedule-section.active .schedule-heading {
+    animation:
+        scheduleHeadingAppear
+        1.2s
+        ease
+        forwards;
+}
+
+
+/* Primer evento */
+
+.schedule-section.active .timeline-item:nth-child(1) {
+    animation:
+        timelineAppear
+        1.2s
+        ease
+        forwards;
+
+    animation-delay: 0.8s;
+}
+
+
+/* Segundo evento */
+
+.schedule-section.active .timeline-item:nth-child(2) {
+    animation:
+        timelineAppear
+        1.2s
+        ease
+        forwards;
+
+    animation-delay: 1.8s;
+}
+
+
+/* Adorno final */
+
+.schedule-section.active .schedule-bottom-ornament {
+    animation:
+        scheduleBottomAppear
+        1s
+        ease
+        forwards;
+
+    animation-delay: 2.8s;
+}
+
+
+@keyframes scheduleHeadingAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes timelineAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-35px)
+            scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0)
+            scale(1);
+    }
+}
+
+
+@keyframes scheduleBottomAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================
+   MÓVIL
+========================================= */
+
+@media (max-width: 600px) {
+
+    .schedule-section {
+        padding:
+            85px
+            18px
+            95px;
+    }
+
+    .schedule-border {
+        inset: 12px;
+    }
+
+    .schedule-border::before,
+    .schedule-border::after {
+        width: 60px;
+        height: 60px;
+    }
+
+    .schedule-decoration {
+        opacity: 0.28;
+    }
+
+    .schedule-decoration-left {
+        left: 3%;
+    }
+
+    .schedule-decoration-right {
+        right: 3%;
+    }
+
+    .schedule-heading {
+        margin-bottom: 45px;
+    }
+
+    .schedule-heading-ornament span:not(:nth-child(2)) {
+        width: 42px;
+    }
+
+    .event-timeline {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .timeline-item {
+        grid-template-columns: 70px 1fr;
+
+        column-gap: 20px;
+
+        min-height: 170px;
+    }
+
+    .timeline-icon {
+        width: 62px;
+        height: 62px;
+    }
+
+    .timeline-icon span {
+        font-size: 1.45rem;
+    }
+
+    .timeline-line {
+        left: 35px;
+
+        top: 70px;
+    }
+
+    .timeline-time {
+        padding:
+            6px
+            14px;
+
+        font-size: 1.1rem;
+    }
+
+    .timeline-info h3 {
+        font-size: 1.75rem;
+        line-height: 1.05;
+    }
+
+    .schedule-bottom-ornament {
+        margin-top: 10px;
+    }
+}
+
+
+/* =========================================
+   REDUCIR MOVIMIENTO
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .schedule-section.active .schedule-heading,
+    .schedule-section.active .timeline-item,
+    .schedule-section.active .schedule-bottom-ornament {
+
+        animation: none;
+
+        opacity: 1;
+
+        transform: none;
+    }
+}

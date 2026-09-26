@@ -149,3 +149,30 @@ const countdownObserver = new IntersectionObserver(
 );
 
 countdownObserver.observe(countdown);
+
+const schedule = document.getElementById("schedule");
+
+if (schedule) {
+
+    const scheduleObserver = new IntersectionObserver(
+        (entries) => {
+
+            entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+
+                    schedule.classList.add("active");
+
+                    scheduleObserver.unobserve(schedule);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.25
+        }
+    );
+
+    scheduleObserver.observe(schedule);
+}
