@@ -2548,3 +2548,927 @@ body.invitation-open {
         transform: none;
     }
 }
+/* =========================================
+   INFORMACIÓN DEL EVENTO
+========================================= */
+
+.event-info-section {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 100px 25px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fffef9 0%,
+            #fff8e8 55%,
+            #efd9a3 100%
+        );
+}
+
+
+/* =========================================
+   MARCO
+========================================= */
+
+.event-info-border {
+    position: absolute;
+    inset: 18px;
+
+    border: 1px solid rgba(197, 154, 66, 0.42);
+
+    pointer-events: none;
+    z-index: 1;
+}
+
+.event-info-border::before,
+.event-info-border::after {
+    content: "";
+
+    position: absolute;
+
+    width: 85px;
+    height: 85px;
+
+    border: 1px solid rgba(197, 154, 66, 0.4);
+}
+
+.event-info-border::before {
+    top: -1px;
+    right: -1px;
+
+    border-left: none;
+    border-bottom: none;
+}
+
+.event-info-border::after {
+    bottom: -1px;
+    left: -1px;
+
+    border-right: none;
+    border-top: none;
+}
+
+
+/* =========================================
+   CONTENIDO
+========================================= */
+
+.event-info-content {
+    width: min(92%, 650px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+
+    z-index: 5;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   FLORES
+========================================= */
+
+.event-flower {
+    position: absolute;
+
+    width: 115px;
+    height: 115px;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    transform: scale(0.15) rotate(-25deg);
+
+    opacity: 0;
+
+    transform-origin: center;
+}
+
+
+/* Posiciones */
+
+.flower-top-left {
+    top: 35px;
+    left: 30px;
+}
+
+.flower-top-right {
+    top: 35px;
+    right: 30px;
+
+    transform:
+        scale(0.15)
+        rotate(25deg);
+}
+
+.flower-bottom-left {
+    bottom: 35px;
+    left: 30px;
+
+    transform:
+        scale(0.15)
+        rotate(25deg);
+}
+
+.flower-bottom-right {
+    bottom: 35px;
+    right: 30px;
+
+    transform:
+        scale(0.15)
+        rotate(-25deg);
+}
+
+
+/* Pétalos */
+
+.event-flower .petal {
+    position: absolute;
+
+    width: 46px;
+    height: 68px;
+
+    left: 50%;
+    top: 50%;
+
+    transform-origin: 50% 90%;
+
+    margin-left: -23px;
+    margin-top: -60px;
+
+    border-radius:
+        50%
+        50%
+        45%
+        45%;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 75%,
+            #d84a50 0%,
+            #b51f2b 45%,
+            #8f1721 100%
+        );
+
+    border: 1px solid rgba(125, 15, 25, 0.35);
+
+    box-shadow:
+        inset 0 -8px 12px rgba(80, 0, 10, 0.15),
+        0 2px 5px rgba(100, 20, 20, 0.12);
+}
+
+
+/* Posición de los pétalos */
+
+.petal-1 {
+    --petal-rotation: 0deg;
+}
+
+.petal-2 {
+    --petal-rotation: 90deg;
+}
+
+.petal-3 {
+    --petal-rotation: 180deg;
+}
+
+.petal-4 {
+    --petal-rotation: 270deg;
+}
+
+
+/* Centro de la flor */
+
+.flower-center {
+    position: absolute;
+
+    width: 25px;
+    height: 25px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.5);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #f3d98b 0%,
+            #c59a42 60%,
+            #9b7227 100%
+        );
+
+    border: 1px solid #a97c2c;
+
+    box-shadow:
+        0 2px 7px rgba(120, 80, 20, 0.2);
+
+    z-index: 5;
+}
+
+
+/* =========================================
+   LUGAR
+========================================= */
+
+.venue-block {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Adorno */
+
+.venue-ornament {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    color: #c59a42;
+
+    margin-bottom: 18px;
+}
+
+.venue-ornament span:not(:nth-child(2)) {
+    width: 65px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            #c59a42
+        );
+}
+
+.venue-ornament span:last-child {
+    background:
+        linear-gradient(
+            to left,
+            transparent,
+            #c59a42
+        );
+}
+
+
+/* Texto pequeño */
+
+.event-info-label {
+    margin: 0;
+
+    color: #8a6a32;
+
+    font-size: 0.82rem;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+/* Icono */
+
+.venue-symbol {
+    width: 68px;
+    height: 68px;
+
+    margin: 20px 0 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #a51f2a;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 1.8rem;
+
+    background:
+        radial-gradient(
+            circle,
+            #fffdf8,
+            #f7ebca
+        );
+
+    border: 1px solid #c59a42;
+
+    box-shadow:
+        0 0 0 6px rgba(197, 154, 66, 0.08),
+        0 8px 18px rgba(120, 80, 20, 0.08);
+}
+
+
+/* Nombre */
+
+.venue-block h2 {
+    margin: 0;
+
+    color: #a51f2a;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: clamp(
+        3rem,
+        11vw,
+        5rem
+    );
+
+    font-weight: 600;
+
+    line-height: 0.9;
+
+    text-shadow:
+        0 2px 2px rgba(120, 70, 20, 0.12);
+}
+
+
+/* Ciudad */
+
+.venue-location {
+    margin: 14px 0 0;
+
+    color: #5d493d;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: 1.45rem;
+
+    letter-spacing: 1px;
+}
+
+
+/* Texto de ubicación */
+
+.venue-address {
+    margin: 10px 0 25px;
+
+    color: #8a6a32;
+
+    font-size: 0.78rem;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   BOTÓN MAPS
+========================================= */
+
+.location-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    min-width: 210px;
+
+    padding: 13px 24px;
+
+    text-decoration: none;
+
+    color: #fffdf8;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a51f2a,
+            #8f1721
+        );
+
+    border: 1px solid #c59a42;
+
+    box-shadow:
+        0 8px 20px rgba(120, 30, 30, 0.16);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: 1.1rem;
+
+    letter-spacing: 1px;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.location-button span {
+    color: #f3d98b;
+
+    font-size: 0.75rem;
+}
+
+.location-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(120, 30, 30, 0.22);
+}
+
+
+/* =========================================
+   SEPARADOR
+========================================= */
+
+.event-info-divider {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin: 55px 0 48px;
+
+    color: #c59a42;
+}
+
+.event-info-divider span:not(:nth-child(2)) {
+    width: 100px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            #c59a42
+        );
+}
+
+.event-info-divider span:last-child {
+    background:
+        linear-gradient(
+            to left,
+            transparent,
+            #c59a42
+        );
+}
+
+
+/* =========================================
+   CÓDIGO DE VESTIMENTA
+========================================= */
+
+.dress-code-block {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dress-ornament {
+    margin: 15px 0 8px;
+
+    color: #c59a42;
+
+    font-size: 1rem;
+}
+
+.dress-code-block h3 {
+    margin: 0;
+
+    color: #5d493d;
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: clamp(
+        2rem,
+        7vw,
+        3rem
+    );
+
+    font-weight: 600;
+}
+
+
+/* Colores reservados */
+
+.reserved-colors {
+    margin-top: 28px;
+}
+
+.reserved-colors > p {
+    margin: 0 0 18px;
+
+    color: #8a6a32;
+
+    font-size: 0.78rem;
+
+    letter-spacing: 2.5px;
+
+    text-transform: uppercase;
+}
+
+.color-list {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+.reserved-color {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #5d493d;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.8px;
+}
+
+
+/* Círculos */
+
+.color-circle {
+    width: 34px;
+    height: 34px;
+
+    display: block;
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(197, 154, 66, 0.55);
+
+    box-shadow:
+        0 4px 10px rgba(80, 50, 20, 0.12);
+}
+
+.gold-color {
+    background: #c59a42;
+}
+
+.red-color {
+    background: #a51f2a;
+}
+
+.white-color {
+    background: #fffdf8;
+}
+
+
+/* =========================================
+   ADORNO INFERIOR
+========================================= */
+
+.event-info-bottom-ornament {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 48px;
+
+    color: #c59a42;
+}
+
+.event-info-bottom-ornament span:not(:nth-child(2)) {
+    width: 60px;
+    height: 1px;
+
+    background: #c59a42;
+}
+
+
+/* =========================================
+   ANIMACIÓN DE LAS FLORES
+========================================= */
+
+.event-info-section .event-flower {
+    opacity: 0;
+    transform: scale(0.15) rotate(-25deg);
+}
+
+.event-info-section.active .event-flower {
+    animation:
+        flowerBloom
+        1.8s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        )
+        forwards;
+}
+
+.flower-top-left {
+    animation-delay: 0.2s !important;
+}
+
+.flower-top-right {
+    animation-delay: 0.45s !important;
+}
+
+.flower-bottom-left {
+    animation-delay: 0.7s !important;
+}
+
+.flower-bottom-right {
+    animation-delay: 0.95s !important;
+}
+
+
+@keyframes flowerBloom {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            scale(0.1)
+            rotate(-35deg);
+    }
+
+    45% {
+        opacity: 0.75;
+
+        transform:
+            scale(0.75)
+            rotate(8deg);
+    }
+
+    75% {
+        opacity: 1;
+
+        transform:
+            scale(1.08)
+            rotate(-3deg);
+    }
+
+    100% {
+        opacity: 0.92;
+
+        transform:
+            scale(1)
+            rotate(0deg);
+    }
+}
+
+
+/* =========================================
+   APERTURA DE PÉTALOS
+========================================= */
+
+.event-info-section .petal {
+    opacity: 0.3;
+}
+
+.event-info-section.active .petal {
+    animation:
+        petalOpen
+        1.5s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        )
+        forwards;
+}
+
+@keyframes petalOpen {
+
+    0% {
+        opacity: 0.3;
+    }
+
+    45% {
+        transform:
+            rotate(var(--petal-rotation))
+            scaleY(0.55);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            rotate(var(--petal-rotation))
+            scaleY(1);
+    }
+}
+
+
+/* =========================================
+   APARICIÓN DEL CONTENIDO
+========================================= */
+
+.venue-block,
+.event-info-divider,
+.dress-code-block,
+.event-info-bottom-ornament {
+    animation:
+        eventContentAppear
+        1.2s
+        ease
+        forwards;
+}
+
+.venue-block {
+    animation-delay: 0.8s;
+}
+
+.event-info-divider {
+    animation-delay: 1.2s;
+}
+
+.dress-code-block {
+    animation-delay: 1.5s;
+}
+
+.event-info-bottom-ornament {
+    animation-delay: 1.9s;
+}
+
+@keyframes eventContentAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================
+   MÓVIL
+========================================= */
+
+@media (max-width: 600px) {
+
+    .event-info-section {
+        padding:
+            85px
+            18px
+            95px;
+    }
+
+    .event-info-border {
+        inset: 12px;
+    }
+
+    .event-info-border::before,
+    .event-info-border::after {
+        width: 60px;
+        height: 60px;
+    }
+
+    .event-info-content {
+        width: min(92%, 500px);
+    }
+
+    .event-flower {
+        width: 80px;
+        height: 80px;
+    }
+
+    .flower-top-left {
+        top: 28px;
+        left: 10px;
+    }
+
+    .flower-top-right {
+        top: 28px;
+        right: 10px;
+    }
+
+    .flower-bottom-left {
+        bottom: 25px;
+        left: 10px;
+    }
+
+    .flower-bottom-right {
+        bottom: 25px;
+        right: 10px;
+    }
+
+    .event-flower .petal {
+        width: 32px;
+        height: 48px;
+
+        margin-left: -16px;
+        margin-top: -42px;
+    }
+
+    .flower-center {
+        width: 19px;
+        height: 19px;
+    }
+
+    .venue-ornament span:not(:nth-child(2)) {
+        width: 42px;
+    }
+
+    .venue-symbol {
+        width: 58px;
+        height: 58px;
+
+        font-size: 1.5rem;
+    }
+
+    .venue-location {
+        font-size: 1.25rem;
+    }
+
+    .event-info-divider {
+        margin:
+            45px 0
+            38px;
+    }
+
+    .event-info-divider span:not(:nth-child(2)) {
+        width: 65px;
+    }
+
+    .color-list {
+        gap: 20px;
+    }
+
+    .event-info-bottom-ornament {
+        margin-top: 38px;
+    }
+}
+
+
+/* =========================================
+   REDUCIR MOVIMIENTO
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .event-info-section .event-flower,
+    .event-flower .petal,
+    .venue-block,
+    .event-info-divider,
+    .dress-code-block,
+    .event-info-bottom-ornament {
+        animation: none;
+
+        opacity: 1;
+
+        transform: none;
+    }
+}

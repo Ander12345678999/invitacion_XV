@@ -176,3 +176,22 @@ if (schedule) {
 
     scheduleObserver.observe(schedule);
 }
+const eventInfo = document.getElementById("event-info");
+
+if (eventInfo) {
+    const eventInfoObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    eventInfo.classList.add("active");
+                    eventInfoObserver.unobserve(eventInfo);
+                }
+            });
+        },
+        {
+            threshold: 0.25
+        }
+    );
+
+    eventInfoObserver.observe(eventInfo);
+}
