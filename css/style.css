@@ -3985,3 +3985,27 @@ body.invitation-open {
         margin-top: 40px;
     }
 }
+/* =========================================
+   INFORMACIÓN DEL INVITADO
+   ========================================= */
+
+.guest-cupos {
+    margin-top: -8px;
+
+    font-size: 0.95rem;
+
+    letter-spacing: 2px;
+
+    color: #8a6a32;
+
+    opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+
+    .guest-cupos {
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+    }
+
+}
