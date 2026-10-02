@@ -410,9 +410,9 @@ const invitados = {
     // Vecinos
 
     "familia-manco-negrete": {
-        nombre: "Familia Manco Negrete",
-        cupos: "¿?"
-    },
+    nombre: "Familia Manco Negrete",
+    cupos: 0
+     },
 
     "richard-ensuncho": {
         nombre: "Richard Ensuncho",
@@ -521,3 +521,48 @@ const invitados = {
     }
 
 };
+
+// =========================================
+// SLIDESHOW DE FOTOS DE ANDREA
+// =========================================
+
+const slides = document.querySelectorAll(".photo-slideshow .slide");
+const photoAge = document.getElementById("photoAge");
+
+let currentSlide = 0;
+
+const photoAges = [
+    "0 años",
+    "1 año",
+    "2 años",
+    "3 años",
+    "4 años",
+    "5 años",
+    "6 años",
+    "7 años",
+    "8 años",
+    "9 años",
+    "10 años",
+    "11 años",
+    "12 años",
+    "15 años"
+];
+
+function changePhoto() {
+
+    if (!slides.length) return;
+
+    slides[currentSlide].classList.remove("active");
+
+    currentSlide = (currentSlide + 1) % slides.length;
+
+    slides[currentSlide].classList.add("active");
+
+    if (photoAge) {
+        photoAge.textContent = photoAges[currentSlide];
+    }
+}
+
+if (slides.length > 1) {
+    setInterval(changePhoto, 4500);
+}

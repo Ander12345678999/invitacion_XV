@@ -20,22 +20,27 @@ if (invitado) {
 
     guestNameElement.textContent = invitado.nombre;
 
-    if (invitado.cupos === 1) {
+    if (invitado.cupos === 0) {
 
-        guestCuposElement.textContent =
-            "Tienes 1 cupo reservado";
+    guestCuposElement.textContent =
+        "Tienen 0 cupos reservados";
 
-    } else if (typeof invitado.cupos === "number") {
+} else if (invitado.cupos === 1) {
 
-        guestCuposElement.textContent =
-            `Tienen ${invitado.cupos} cupos reservados`;
+    guestCuposElement.textContent =
+        "Tienes 1 cupo reservado";
 
-    } else {
+} else if (typeof invitado.cupos === "number") {
 
-        guestCuposElement.textContent =
-            "Cupos por confirmar";
+    guestCuposElement.textContent =
+        `Tienen ${invitado.cupos} cupos reservados`;
 
-    }
+} else {
+
+    guestCuposElement.textContent =
+        "Cupos por confirmar";
+
+}
 
 } else {
 
