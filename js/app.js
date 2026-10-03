@@ -2,31 +2,159 @@ const openInvitation = document.getElementById("openInvitation");
 const presentation = document.getElementById("presentation");
 const countdown = document.getElementById("countdown");
 
+// =========================================
+// MÚSICA
+// =========================================
+
+const backgroundMusic = document.getElementById("backgroundMusic");
+const musicToggle = document.getElementById("musicToggle");
+const musicStatus = document.querySelector(".music-status");
+
 
 // =========================================
 // ABRIR INVITACIÓN
 // =========================================
 
-openInvitation.addEventListener("click", () => {
+if (openInvitation) {
 
-    // Desbloquear la invitación
-    document.body.classList.remove("invitation-locked");
-    document.body.classList.add("invitation-open");
+    openInvitation.addEventListener("click", () => {
 
-    // Activar la animación de presentación
-    presentation.classList.add("active");
+        // Abrir la invitación
+        document.body.classList.remove("invitation-locked");
+        document.body.classList.add("invitation-open");
 
-    // Entrar suavemente a la siguiente sección
-    setTimeout(() => {
+        if (presentation) {
+            presentation.classList.add("active");
+        }
 
-        presentation.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
 
-    }, 100);
+        // =====================================
+        // INICIAR MÚSICA
+        // =====================================
 
-});
+        if (backgroundMusic) {
+
+            backgroundMusic.volume = 0.45;
+
+            backgroundMusic.play()
+                .then(() => {
+
+                    if (musicToggle) {
+                        musicToggle.classList.add("music-playing");
+
+                        musicToggle.setAttribute(
+                            "aria-pressed",
+                            "true"
+                        );
+
+                        musicToggle.setAttribute(
+                            "aria-label",
+                            "Silenciar música"
+                        );
+                    }
+
+                    if (musicStatus) {
+                        musicStatus.textContent = "Música";
+                    }
+
+                })
+                .catch((error) => {
+
+                    console.log(
+                        "No se pudo iniciar la música:",
+                        error
+                    );
+
+                });
+        }
+
+
+        // =====================================
+        // IR A LA PRESENTACIÓN
+        // =====================================
+
+        setTimeout(() => {
+
+            if (presentation) {
+
+                presentation.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        }, 100);
+
+    });
+
+}
+
+
+// =========================================
+// CONTROL DE MÚSICA
+// =========================================
+
+if (musicToggle && backgroundMusic) {
+
+    musicToggle.addEventListener("click", () => {
+
+        if (backgroundMusic.paused) {
+
+            backgroundMusic.play()
+                .then(() => {
+
+                    musicToggle.classList.add("music-playing");
+
+                    musicToggle.setAttribute(
+                        "aria-pressed",
+                        "true"
+                    );
+
+                    musicToggle.setAttribute(
+                        "aria-label",
+                        "Silenciar música"
+                    );
+
+                    if (musicStatus) {
+                        musicStatus.textContent = "Música";
+                    }
+
+                })
+                .catch((error) => {
+
+                    console.log(
+                        "No se pudo reproducir la música:",
+                        error
+                    );
+
+                });
+
+        } else {
+
+            backgroundMusic.pause();
+
+            musicToggle.classList.remove("music-playing");
+
+            musicToggle.setAttribute(
+                "aria-pressed",
+                "false"
+            );
+
+            musicToggle.setAttribute(
+                "aria-label",
+                "Activar música"
+            );
+
+            if (musicStatus) {
+                musicStatus.textContent = "Silencio";
+            }
+
+        }
+
+    });
+
+}
 
 
 // =========================================
@@ -65,13 +193,26 @@ function updateCountdown() {
 
     if (difference <= 0) {
 
-        daysElement.textContent = "00";
-        hoursElement.textContent = "00";
-        minutesElement.textContent = "00";
-        secondsElement.textContent = "00";
+        if (daysElement) {
+            daysElement.textContent = "00";
+        }
 
-        countdownMessage.textContent =
-            "¡Llegó el gran día! Hoy celebramos juntos los XV años de Andrea. ✨";
+        if (hoursElement) {
+            hoursElement.textContent = "00";
+        }
+
+        if (minutesElement) {
+            minutesElement.textContent = "00";
+        }
+
+        if (secondsElement) {
+            secondsElement.textContent = "00";
+        }
+
+        if (countdownMessage) {
+            countdownMessage.textContent =
+                "¡Llegó el gran día! Hoy celebramos juntos los XV años de Andrea. ✨";
+        }
 
         clearInterval(countdownInterval);
 
@@ -96,17 +237,26 @@ function updateCountdown() {
     );
 
 
-    daysElement.textContent =
-        String(days).padStart(2, "0");
+    if (daysElement) {
+        daysElement.textContent =
+            String(days).padStart(2, "0");
+    }
 
-    hoursElement.textContent =
-        String(hours).padStart(2, "0");
+    if (hoursElement) {
+        hoursElement.textContent =
+            String(hours).padStart(2, "0");
+    }
 
-    minutesElement.textContent =
-        String(minutes).padStart(2, "0");
+    if (minutesElement) {
+        minutesElement.textContent =
+            String(minutes).padStart(2, "0");
+    }
 
-    secondsElement.textContent =
-        String(seconds).padStart(2, "0");
+    if (secondsElement) {
+        secondsElement.textContent =
+            String(seconds).padStart(2, "0");
+    }
+
 }
 
 
@@ -127,28 +277,37 @@ updateCountdown();
 // ACTIVAR ANIMACIONES DEL CONTADOR
 // =========================================
 
-const countdownObserver = new IntersectionObserver(
-    (entries) => {
+if (countdown) {
 
-        entries.forEach((entry) => {
+    const countdownObserver = new IntersectionObserver(
+        (entries) => {
 
-            if (entry.isIntersecting) {
+            entries.forEach((entry) => {
 
-                countdown.classList.add("active");
+                if (entry.isIntersecting) {
 
-                countdownObserver.unobserve(countdown);
+                    countdown.classList.add("active");
 
-            }
+                    countdownObserver.unobserve(countdown);
 
-        });
+                }
 
-    },
-    {
-        threshold: 0.35
-    }
-);
+            });
 
-countdownObserver.observe(countdown);
+        },
+        {
+            threshold: 0.35
+        }
+    );
+
+    countdownObserver.observe(countdown);
+
+}
+
+
+// =========================================
+// ANIMACIÓN DEL CRONOGRAMA
+// =========================================
 
 const schedule = document.getElementById("schedule");
 
@@ -164,6 +323,7 @@ if (schedule) {
                     schedule.classList.add("active");
 
                     scheduleObserver.unobserve(schedule);
+
                 }
 
             });
@@ -175,18 +335,33 @@ if (schedule) {
     );
 
     scheduleObserver.observe(schedule);
+
 }
+
+
+// =========================================
+// ANIMACIÓN INFORMACIÓN DEL EVENTO
+// =========================================
+
 const eventInfo = document.getElementById("event-info");
 
 if (eventInfo) {
+
     const eventInfoObserver = new IntersectionObserver(
         (entries) => {
+
             entries.forEach((entry) => {
+
                 if (entry.isIntersecting) {
+
                     eventInfo.classList.add("active");
+
                     eventInfoObserver.unobserve(eventInfo);
+
                 }
+
             });
+
         },
         {
             threshold: 0.25
@@ -194,7 +369,10 @@ if (eventInfo) {
     );
 
     eventInfoObserver.observe(eventInfo);
+
 }
+
+
 // =========================================
 // LISTA DE INVITADOS
 // =========================================
@@ -324,7 +502,7 @@ const invitados = {
     },
 
 
-    // Amigos del papá de la cumpleañera
+    // Amigos del papá
 
     "alfonso-y-anparo": {
         nombre: "Alfonso y Anparo",
@@ -410,9 +588,9 @@ const invitados = {
     // Vecinos
 
     "familia-manco-negrete": {
-    nombre: "Familia Manco Negrete",
-    cupos: 0
-     },
+        nombre: "Familia Manco Negrete",
+        cupos: 0
+    },
 
     "richard-ensuncho": {
         nombre: "Richard Ensuncho",
@@ -522,14 +700,19 @@ const invitados = {
 
 };
 
+
 // =========================================
 // SLIDESHOW DE FOTOS DE ANDREA
 // =========================================
 
-const slides = document.querySelectorAll(".photo-slideshow .slide");
-const photoAge = document.getElementById("photoAge");
+const slides =
+    document.querySelectorAll(".photo-slideshow .slide");
+
+const photoAge =
+    document.getElementById("photoAge");
 
 let currentSlide = 0;
+
 
 const photoAges = [
     "0 años",
@@ -548,21 +731,35 @@ const photoAges = [
     "15 años"
 ];
 
+
 function changePhoto() {
 
-    if (!slides.length) return;
+    if (!slides.length) {
+        return;
+    }
 
     slides[currentSlide].classList.remove("active");
 
-    currentSlide = (currentSlide + 1) % slides.length;
+    currentSlide =
+        (currentSlide + 1) % slides.length;
 
     slides[currentSlide].classList.add("active");
 
     if (photoAge) {
-        photoAge.textContent = photoAges[currentSlide];
+
+        photoAge.textContent =
+            photoAges[currentSlide];
+
     }
+
 }
 
+
 if (slides.length > 1) {
-    setInterval(changePhoto, 4500);
+
+    setInterval(
+        changePhoto,
+        4500
+    );
+
 }

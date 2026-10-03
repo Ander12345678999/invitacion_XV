@@ -4142,13 +4142,11 @@ body.invitation-open {
    ========================================================= */
 
 .photo-slideshow {
-    position: absolute;
-
-    inset: 8px;
-
+    position: relative;
     overflow: hidden;
-
-    z-index: 1;
+    box-sizing: border-box;
+    border: 1px solid #c9a227;
+    padding: 6px;
 }
 
 
@@ -4549,4 +4547,154 @@ body.invitation-open {
         font-size: 0.76rem;
     }
 
+}
+/* =========================================
+   BOTÓN DE MÚSICA
+   ========================================= */
+
+.music-toggle {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 15px;
+
+    border: 1px solid rgba(197, 154, 66, 0.85);
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 253, 248, 0.96),
+            rgba(250, 239, 211, 0.96)
+        );
+
+    color: #8a6a32;
+
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 18px rgba(80, 50, 20, 0.16),
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+
+    backdrop-filter: blur(6px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(15px);
+
+    transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease,
+        transform 0.5s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* Aparece cuando se abre la invitación */
+body.invitation-open .music-toggle {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Icono */
+.music-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+
+    color: #a51f2a;
+
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+/* Texto */
+.music-status {
+    white-space: nowrap;
+}
+
+/* Estado activo */
+.music-toggle.music-playing {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 250, 235, 0.98),
+            rgba(244, 224, 174, 0.98)
+        );
+
+    box-shadow:
+        0 5px 20px rgba(197, 154, 66, 0.25),
+        0 0 12px rgba(197, 154, 66, 0.12);
+}
+
+/* Animación del símbolo cuando está sonando */
+.music-toggle.music-playing .music-icon {
+    animation: musicPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+/* Efecto al tocar/pasar */
+.music-toggle:hover {
+    transform: translateY(-2px);
+}
+
+.music-toggle:active {
+    transform: translateY(0) scale(0.96);
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+
+    .music-toggle {
+        right: 15px;
+        bottom: 15px;
+
+        padding: 9px 12px;
+
+        font-size: 0.82rem;
+    }
+
+    .music-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 1.05rem;
+    }
+}
+/* Mensaje corto de bienvenida de mamá */
+.mother-welcome {
+    margin: 20px auto 0;
+    max-width: 320px;
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    font-weight: 400;
+    font-style: italic;
+    color: #f3d9a6;
+    font-family: inherit;
 }
