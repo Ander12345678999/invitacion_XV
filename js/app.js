@@ -696,7 +696,17 @@ const invitados = {
     "shirley-y-uriel": {
         nombre: "Shirley y Uriel",
         cupos: 2
-    }
+    },
+    "rosa-y-rosalis": {
+    nombre: "Rosa y Rosalis",
+    cupos: 2
+},
+
+"jose-gabriel": {
+    nombre: "José Gabriel",
+    cupos: 1
+}
+    
 
 };
 
